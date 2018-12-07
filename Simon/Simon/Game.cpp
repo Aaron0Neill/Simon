@@ -49,6 +49,15 @@ void Game::run()
 /// </summary>
 void Game::processEvents()
 {
+	const int COL_1_LEFT = 350;
+	const int COL_1_RIGHT = 550;
+	const int COL_2_LEFT = 570;
+	const int COL_2_RIGHT = 770;
+	const int ROW_1_TOP = 20;
+	const int ROW_1_BOTTOM = 230;
+	const int ROW_2_TOP = 250;
+	const int ROW_2_BOTTOM = 450;
+
 	sf::Event event;
 	while (m_window.pollEvent(event))
 	{
@@ -63,6 +72,36 @@ void Game::processEvents()
 				m_exitGame = true;
 			}
 		}
+
+		if (sf::Event::MouseButtonReleased == event.type)
+		{
+			if (event.mouseButton.x > COL_1_LEFT && event.mouseButton.x < COL_1_RIGHT)
+			{
+				if (event.mouseButton.y > ROW_1_TOP && event.mouseButton.y < ROW_1_BOTTOM)
+				{
+					m_greenButtonPressed == true;
+				}
+
+				if (event.mouseButton.y > ROW_2_TOP && event.mouseButton.y < ROW_2_BOTTOM)
+				{
+					m_yellowButtonPressed = true;
+				}
+			}
+
+			if (event.mouseButton.x > COL_2_LEFT && event.mouseButton.x < COL_2_RIGHT)
+			{
+				if (event.mouseButton.y > ROW_1_TOP && event.mouseButton.y < ROW_1_BOTTOM)
+				{
+					m_redButtonPressed = true;
+				}
+
+				if (event.mouseButton.y > ROW_2_TOP && event.mouseButton.y < ROW_2_BOTTOM)
+				{
+					m_blueButtonPressed = true;
+				}
+			}
+			
+		}
 	}
 }
 
@@ -75,6 +114,24 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_exitGame)
 	{
 		m_window.close();
+	}
+
+	switch (m_currentGameMode)
+	{
+	case GameMode::Showing:
+		break;
+
+	case GameMode::Recieving:
+		break;
+
+	case GameMode::GameOver:
+		break;
+
+	case GameMode::Starting:
+		break;
+
+	default:
+			break;
 	}
 }
 
