@@ -8,7 +8,10 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ 800, 600, 32 }, "Simon" },
 	m_exitGame{ false }, //when true game will exit
-	m_redSquare{ sf::Vector2f{ 200.0f, 200.0f } }
+	m_redSquare{ sf::Vector2f{ 200.0f, 200.0f } },
+	m_yellowSquare{sf::Vector2f{ 200.0f, 200.0f } },
+	m_greenSquare{ sf::Vector2f{200.0f, 200.0f} },
+	m_blueSquare{sf::Vector2f{ 200.0f, 200.0f } }
 {
 	setupButton();
 }
@@ -80,11 +83,25 @@ void Game::render()
 {
 	m_window.clear();
 	m_window.draw(m_redSquare);
+	m_window.draw(m_yellowSquare);
+	m_window.draw(m_greenSquare);
+	m_window.draw(m_blueSquare);
 	m_window.display();
 }
-
+/// <summary>
+/// Sets up all the buttons
+/// </summary>
 void Game::setupButton()
 {
-	m_redSquare.setFillColor(sf::Color::Red);
+	m_redSquare.setFillColor(RED);
 	m_redSquare.setPosition(sf::Vector2f{ 570, 30 });
+
+	m_greenSquare.setFillColor(GREEN);
+	m_greenSquare.setPosition(sf::Vector2f(350, 30));
+
+	m_yellowSquare.setFillColor(YELLOW);
+	m_yellowSquare.setPosition(sf::Vector2f(350, 250));
+
+	m_blueSquare.setFillColor(BLUE);
+	m_blueSquare.setPosition(sf::Vector2f(570, 250));
 }
