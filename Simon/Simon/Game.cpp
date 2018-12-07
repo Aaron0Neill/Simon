@@ -1,4 +1,4 @@
-// author Aaron O Neill
+// author Aaron O Neill && mantas
 
 #include "Game.h"
 #include <iostream>
@@ -14,6 +14,7 @@ Game::Game() :
 	m_blueSquare{sf::Vector2f{ 200.0f, 200.0f } }
 {
 	setupButton();
+	setupText();
 }
 
 
@@ -86,6 +87,7 @@ void Game::render()
 	m_window.draw(m_yellowSquare);
 	m_window.draw(m_greenSquare);
 	m_window.draw(m_blueSquare);
+	m_window.draw(m_titleText);
 	m_window.display();
 }
 /// <summary>
@@ -104,4 +106,20 @@ void Game::setupButton()
 
 	m_blueSquare.setFillColor(BLUE);
 	m_blueSquare.setPosition(sf::Vector2f(570, 250));
+}
+
+/// <summary>
+/// function that sets up the text
+/// </summary>
+void Game::setupText()
+{
+	if (m_impactFont.loadFromFile("assets/fonts/impact.ttf"))
+	{
+		std::cout << "font loaded okay\n";
+	}
+	m_titleText.setFont(m_impactFont);
+	m_titleText.setFillColor(WHITE);
+	m_titleText.setCharacterSize(64);
+	m_titleText.setPosition(50, 30);
+	m_titleText.setString("S I M O N");
 }

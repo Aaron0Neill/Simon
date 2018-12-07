@@ -1,7 +1,7 @@
 /// <summary>
 /// simple simon game
 /// 
-/// @author Aaron O Neill
+/// @author Aaron O Neill && mantas
 /// @date
 /// </summary>
 

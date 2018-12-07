@@ -1,4 +1,4 @@
-// author Aaron O Neill
+// author Aaron O Neill && mantas
 #ifndef GAME
 #define GAME
 
@@ -19,7 +19,8 @@ private:
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
-	void setupButton();
+	void setupButton(); //function to setup all the buttons
+	void setupText();  //function to setup text
 
 	const sf::Color RED{ 255, 30, 30, 255 }; // it's the color red
 	const sf::Color GREEN{ 51, 255, 51, 255 }; // it's the color green
@@ -38,7 +39,8 @@ private:
 	sf::RectangleShape m_yellowSquare; // it's rectangle shape for a yellow button.
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.
 	sf::RectangleShape m_greenSquare; // it's rectangle shape for a green button.
-
+	sf::Font m_impactFont; //font used in text
+	sf::Text m_titleText; 
 };
 
 #endif // !GAME
