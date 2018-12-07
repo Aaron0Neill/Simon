@@ -40,7 +40,12 @@ private:
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.
 	sf::RectangleShape m_greenSquare; // it's rectangle shape for a green button.
 	sf::Font m_impactFont; //font used in text
-	sf::Text m_titleText; 
+	sf::Text m_titleText; // main title text for simon
+	sf::Text m_instructionsTextBlue; // text for blue instructions
+	sf::Text m_instructionsTextRed; // text for red instructions
+	sf::Text m_instructionsTextGreen; // text for green instructions
+	sf::Text m_instructionsTextYellow; // text for yellow instructions
+	sf::Text m_statusText; // text for status
 };
 
 #endif // !GAME
