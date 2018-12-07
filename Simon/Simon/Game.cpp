@@ -9,9 +9,10 @@ Game::Game() :
 	m_window{ sf::VideoMode{ 800, 600, 32 }, "Simon" },
 	m_exitGame{ false }, //when true game will exit
 	m_redSquare{ sf::Vector2f{ 200.0f, 200.0f } },
-	m_yellowSquare{sf::Vector2f{ 200.0f, 200.0f } },
+	m_yellowSquare{ sf::Vector2f{ 200.0f, 200.0f } },
 	m_greenSquare{ sf::Vector2f{200.0f, 200.0f} },
-	m_blueSquare{sf::Vector2f{ 200.0f, 200.0f } }
+	m_blueSquare{ sf::Vector2f{ 200.0f, 200.0f } },
+	m_currentGameMode{ GameMode::Starting }
 {
 	setupButton();
 	setupText();
@@ -88,10 +89,13 @@ void Game::render()
 	m_window.draw(m_greenSquare);
 	m_window.draw(m_blueSquare);
 	m_window.draw(m_titleText);
-	m_window.draw(m_instructionsTextBlue);
-	m_window.draw(m_instructionsTextGreen);
-	m_window.draw(m_instructionsTextRed);
-	m_window.draw(m_instructionsTextYellow);
+	if (GameMode::Starting == m_currentGameMode)
+	{
+		m_window.draw(m_instructionsTextBlue);
+		m_window.draw(m_instructionsTextGreen);
+		m_window.draw(m_instructionsTextRed);
+		m_window.draw(m_instructionsTextYellow);
+	}
 	m_window.draw(m_statusText);
 	m_window.display();
 }
@@ -156,5 +160,5 @@ void Game::setupText()
 	m_statusText.setFillColor(WHITE);
 	m_statusText.setCharacterSize(22);
 	m_statusText.setPosition(500, 453);
-	m_statusText.setString("Test");
+	m_statusText.setString(" ");
 }

@@ -3,7 +3,16 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
-
+/// <summary>
+/// The four different modes the game can be in
+/// </summary>
+enum class GameMode
+{
+	Showing,
+	Recieving,
+	GameOver,
+	Starting
+};
 class Game
 {
 public:
@@ -13,6 +22,7 @@ public:
 	/// main method for game
 	/// </summary>
 	void run();
+	GameMode m_currentGameMode; // current mode the game is in
 
 private:
 
