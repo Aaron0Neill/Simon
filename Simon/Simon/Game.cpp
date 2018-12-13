@@ -24,6 +24,16 @@ Game::~Game()
 }
 
 
+
+void Game::startingUpdate(sf::Time t_deltaTime)
+{
+	m_statusText.setString("");
+	if (m_blueButtonPressed)
+	{
+		m_exitGame = true;
+	}
+}
+
 void Game::run()
 {
 	sf::Clock clock;
@@ -42,6 +52,16 @@ void Game::run()
 		render(); // as many as possible
 	}
 }
+
+void Game::resetButtons()
+{
+	m_blueButtonPressed = false;
+	m_redButtonPressed = false;
+	m_yellowButtonPressed = false;
+	m_greenButtonPressed = false;
+}
+
+
 /// <summary>
 /// handle user and system events/ input
 /// get key presses/ mouse moves etc. from OS
@@ -76,6 +96,7 @@ void Game::processEvents()
 
 		if (sf::Event::MouseButtonReleased == event.type)
 		{
+			resetButtons();
 			if (event.mouseButton.x > COL_1_LEFT && event.mouseButton.x < COL_1_RIGHT)
 			{
 				if (event.mouseButton.y > ROW_1_TOP && event.mouseButton.y < ROW_1_BOTTOM)
@@ -129,6 +150,7 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 
 	case GameMode::Starting:
+		startingUpdate(t_deltaTime);
 		break;
 
 	default:

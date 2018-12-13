@@ -29,8 +29,12 @@ private:
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
+
+	void resetButtons();
 	void setupButton(); //function to setup all the buttons
 	void setupText();  //function to setup text
+
+	void startingUpdate(sf::Time t_deltaTime);
 
 	const sf::Color RED{ 255, 30, 30, 255 }; // it's the color red
 	const sf::Color GREEN{ 51, 255, 51, 255 }; // it's the color green
@@ -45,10 +49,10 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
-	bool m_redButtonPressed; //controls if the red button is pressed
-	bool m_yellowButtonPressed; //controls if the yellow button is pressed
-	bool m_blueButtonPressed; //controls if the blue button is pressed
-	bool m_greenButtonPressed; //controls if the green button is pressed
+	bool m_redButtonPressed{ false }; //controls if the red button is pressed
+	bool m_yellowButtonPressed{ false }; //controls if the yellow button is pressed
+	bool m_blueButtonPressed{ false }; //controls if the blue button is pressed
+	bool m_greenButtonPressed{ false }; //controls if the green button is pressed
 	sf::RectangleShape m_redSquare; // it's rectangle shape for a red button.
 	sf::RectangleShape m_yellowSquare; // it's rectangle shape for a yellow button.
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.
