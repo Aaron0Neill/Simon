@@ -49,7 +49,8 @@ void Game::run()
 /// </summary>
 void Game::processEvents()
 {
-	const int COL_1_LEFT = 350;
+	//position for the buttons
+	const int COL_1_LEFT = 350; 
 	const int COL_1_RIGHT = 550;
 	const int COL_2_LEFT = 570;
 	const int COL_2_RIGHT = 770;

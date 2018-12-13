@@ -45,10 +45,10 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
-	bool m_redButtonPressed;
-	bool m_yellowButtonPressed;
-	bool m_blueButtonPressed;
-	bool m_greenButtonPressed;
+	bool m_redButtonPressed; //controls if the red button is pressed
+	bool m_yellowButtonPressed; //controls if the yellow button is pressed
+	bool m_blueButtonPressed; //controls if the blue button is pressed
+	bool m_greenButtonPressed; //controls if the green button is pressed
 	sf::RectangleShape m_redSquare; // it's rectangle shape for a red button.
 	sf::RectangleShape m_yellowSquare; // it's rectangle shape for a yellow button.
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.
