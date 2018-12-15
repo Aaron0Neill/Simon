@@ -35,6 +35,7 @@ private:
 	void setupText();  //function to setup text
 
 	void startingUpdate(sf::Time t_deltaTime);
+	void randomiseNotes(); //assign a new set of notes to the array
 
 	const sf::Color RED{ 255, 30, 30, 255 }; // it's the color red
 	const sf::Color GREEN{ 51, 255, 51, 255 }; // it's the color green
@@ -53,6 +54,8 @@ private:
 	bool m_yellowButtonPressed{ false }; //controls if the yellow button is pressed
 	bool m_blueButtonPressed{ false }; //controls if the blue button is pressed
 	bool m_greenButtonPressed{ false }; //controls if the green button is pressed
+	int m_noteSequence[32]; //array of notes
+	int m_difficultyLevel; //difficulty 8,16,32
 	sf::RectangleShape m_redSquare; // it's rectangle shape for a red button.
 	sf::RectangleShape m_yellowSquare; // it's rectangle shape for a yellow button.
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.

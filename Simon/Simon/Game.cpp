@@ -25,12 +25,37 @@ Game::~Game()
 
 
 
+void Game::randomiseNotes()
+{
+	for (int i = 0; i < 32; i++)
+	{
+		// looking for values of 1,2,3
+		m_noteSequence[i] = std::rand() % 4;
+	}
+}
+
+
 void Game::startingUpdate(sf::Time t_deltaTime)
 {
 	m_statusText.setString("");
 	if (m_blueButtonPressed)
 	{
 		m_exitGame = true;
+	}
+	if (m_greenButtonPressed)
+	{
+		randomiseNotes();
+		m_difficultyLevel = 8;
+	}
+	if (m_redButtonPressed)
+	{
+		randomiseNotes();
+		m_difficultyLevel = 16;
+	}
+	if (m_yellowButtonPressed)
+	{
+		randomiseNotes();
+		m_difficultyLevel = 32;
 	}
 }
 
