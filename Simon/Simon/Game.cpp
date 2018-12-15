@@ -16,6 +16,7 @@ Game::Game() :
 {
 	setupButton();
 	setupText();
+	setupAudio();
 }
 
 
@@ -58,6 +59,25 @@ void Game::startingUpdate(sf::Time t_deltaTime)
 		m_difficultyLevel = 32;
 	}
 }
+
+
+void Game::setupAudio()
+{
+	//loads the sound file in a buffer
+	if (m_toneBuffer.loadFromFile("assets/audio/tone.wav"))
+	{
+		std::cout << "beep loaded okay\n";
+	}
+	//assign the buffer to sounds and change the pitch
+	m_blueTone.setBuffer(m_toneBuffer);
+	m_redTone.setBuffer(m_toneBuffer);
+	m_redTone.setPitch(0.85f);
+	m_yellowTone.setBuffer(m_toneBuffer);
+	m_yellowTone.setPitch(0.7f);
+	m_greenTone.setBuffer(m_toneBuffer);
+	m_greenTone.setPitch(0.55f);
+}
+
 
 void Game::run()
 {

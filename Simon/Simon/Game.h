@@ -3,6 +3,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 /// <summary>
 /// The four different modes the game can be in
 /// </summary>
@@ -33,6 +34,7 @@ private:
 	void resetButtons();
 	void setupButton(); //function to setup all the buttons
 	void setupText();  //function to setup text
+	void setupAudio(); //load audio file and setup sounds
 
 	void startingUpdate(sf::Time t_deltaTime);
 	void randomiseNotes(); //assign a new set of notes to the array
@@ -56,6 +58,13 @@ private:
 	bool m_greenButtonPressed{ false }; //controls if the green button is pressed
 	int m_noteSequence[32]; //array of notes
 	int m_difficultyLevel; //difficulty 8,16,32
+
+
+	sf::SoundBuffer m_toneBuffer;
+	sf::Sound m_blueTone;
+	sf::Sound m_redTone;
+	sf::Sound m_greenTone;
+	sf::Sound m_yellowTone;
 	sf::RectangleShape m_redSquare; // it's rectangle shape for a red button.
 	sf::RectangleShape m_yellowSquare; // it's rectangle shape for a yellow button.
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.
