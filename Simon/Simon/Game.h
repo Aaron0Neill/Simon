@@ -36,8 +36,10 @@ private:
 	void setupText();  //function to setup text
 	void setupAudio(); //load audio file and setup sounds
 
-	void startingUpdate(sf::Time t_deltaTime);
+	void startingUpdate(sf::Time t_deltaTime); //update game in menu mode
 	void randomiseNotes(); //assign a new set of notes to the array
+	void showingUpdate(sf::Time t_deltaTime); //update game in demo mode
+	void countdownTimers(); //manage timers
 
 	const sf::Color RED{ 255, 30, 30, 255 }; // it's the color red
 	const sf::Color GREEN{ 51, 255, 51, 255 }; // it's the color green
@@ -58,6 +60,8 @@ private:
 	bool m_greenButtonPressed{ false }; //controls if the green button is pressed
 	int m_noteSequence[32]; //array of notes
 	int m_difficultyLevel; //difficulty 8,16,32
+	int m_currentNote; //current note count
+	int m_currentCount; //current sequence length
 
 
 	sf::SoundBuffer m_toneBuffer;
@@ -65,6 +69,13 @@ private:
 	sf::Sound m_redTone;
 	sf::Sound m_greenTone;
 	sf::Sound m_yellowTone;
+
+	int m_blueTimer = 0; //time till blue button returns to normal color
+	int m_redTimer = 0; //time till red button returns to normal color
+	int m_greenTimer = 0; //time till green button returns to normal color
+	int m_yellowTimer = 0; //time till yellow button returns to normal color
+	int m_flashTime = 15; //current time delay for buttons to return to normal color
+
 	sf::RectangleShape m_redSquare; // it's rectangle shape for a red button.
 	sf::RectangleShape m_yellowSquare; // it's rectangle shape for a yellow button.
 	sf::RectangleShape m_blueSquare; // it's rectangle shape for a blue button.

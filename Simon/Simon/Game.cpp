@@ -47,6 +47,9 @@ void Game::startingUpdate(sf::Time t_deltaTime)
 	{
 		randomiseNotes();
 		m_difficultyLevel = 8;
+		m_currentCount = 8;
+		m_currentNote = 0;
+		m_currentGameMode = GameMode::Showing;
 	}
 	if (m_redButtonPressed)
 	{
@@ -60,6 +63,95 @@ void Game::startingUpdate(sf::Time t_deltaTime)
 	}
 }
 
+void Game::countdownTimers()
+{
+	if (m_blueTimer > 0)
+	{
+		if (0 == --m_blueTimer)
+		{
+			m_blueSquare.setFillColor(BLUE);
+		}
+	}
+	if (m_redTimer > 0)
+	{
+		if (0 == --m_redTimer)
+		{
+			m_redSquare.setFillColor(RED);
+		}
+	}
+	if (m_yellowTimer > 0)
+	{
+		if (0 == --m_yellowTimer)
+		{
+			m_yellowSquare.setFillColor(YELLOW);
+		}
+	}
+	if (m_greenTimer > 0)
+	{
+		if (0 == --m_greenTimer)
+		{
+			m_greenSquare.setFillColor(GREEN);
+		}
+	}
+
+}
+
+/// <summary>
+/// @brief update the display of notes
+/// 
+/// wait for a delay initial, give the human a break between modes
+/// then set the status text and if the previou note is finished (lights gone out)
+/// may still be playing then switch to the next note
+/// green is 0
+/// red is 1 
+/// yellow is 2
+/// blue is 3
+/// play the tone and highlight the button and set the timer
+/// </summary>
+void Game::showingUpdate(sf::Time t_deltaTime)
+{
+	m_statusText.setString("Playing");
+	if (0 == m_blueTimer && 0 == m_redTimer && 0 == m_greenTimer && 0 == m_yellowTimer)
+	{
+		if (m_currentNote < m_currentCount)
+		{
+			switch (m_noteSequence[m_currentNote])
+			{
+			case 0:
+				m_greenTone.play();
+				m_greenTimer = m_flashTime;
+				m_greenSquare.setFillColor(GREEN + sf::Color(64, 64, 64, 255));
+				break;
+			case 1:
+				m_redTone.play();
+				m_redTimer = m_flashTime;
+				m_redSquare.setFillColor(GREEN + sf::Color(64, 64, 64, 255));
+				break;
+			case 2:
+				m_yellowTone.play();
+				m_yellowTimer = m_flashTime;
+				m_yellowSquare.setFillColor(GREEN + sf::Color(64, 64, 64, 255));
+				break;
+			case 3:
+				m_blueTone.play();
+				m_blueTimer = m_flashTime;
+				m_blueSquare.setFillColor(GREEN + sf::Color(64, 64, 64, 255));
+				break;
+			default:
+				break;
+			}
+			m_currentNote++;
+		}
+		else
+		{
+			//when all the notes have been played switch to listening mode
+			// and start back at the start of the sequence
+			m_currentGameMode = GameMode::Starting;
+			m_currentNote = 0;
+		}
+	}
+	countdownTimers();
+}
 
 void Game::setupAudio()
 {
@@ -83,7 +175,7 @@ void Game::run()
 {
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
-	sf::Time timePerFrame = sf::seconds(1.f / 60.f); // 60 fps
+	sf::Time timePerFrame = sf::seconds(1.f / 30.f); // 30 fps
 	while (m_window.isOpen())
 	{
 		processEvents(); // as many as possible
@@ -186,6 +278,7 @@ void Game::update(sf::Time t_deltaTime)
 	switch (m_currentGameMode)
 	{
 	case GameMode::Showing:
+		showingUpdate(t_deltaTime);
 		break;
 
 	case GameMode::Recieving:
@@ -201,6 +294,7 @@ void Game::update(sf::Time t_deltaTime)
 	default:
 			break;
 	}
+	resetButtons(); //clear button bools for next set of process events
 }
 
 /// <summary>
